@@ -19,18 +19,27 @@ class Solution:
         while curr.next:
             count += 1
             curr = curr.next 
-        tail = curr.val
+            
+#       Make a cycle here  
         curr.next = head
-        curr = curr.next  # Begin
+    
+#       This is the original starting points
+        curr = curr.next  
         # print(start, tail,curr.val,count)
+        
+#         Reduce the cycle times
         k %= count
+    
+#       New starting points
         for i in range(count-k):
             curr = curr.next
             # print(curr.val)
-    
+#       Answer print out the length of the original one which is has a cycle 
         for i in range(count):
             ans = ListNode(curr.val, ans)
             curr = curr.next
+            
+#             Reverse Here
         pre = None 
         curr = ans
         while curr:
@@ -39,4 +48,5 @@ class Solution:
             pre = curr
             curr = tmp 
         ans = pre
+        
         return ans
