@@ -1,0 +1,19 @@
+class Solution:
+    def advisor(self, nums, adv,threshold):
+        tmp = []
+        for i in nums:
+            tmp.append(math.ceil(i / adv))
+        return sum(tmp) <= threshold
+    
+    def smallestDivisor(self, nums: List[int], threshold: int) -> int:
+        low = 0
+        high = 1e7
+        while low < high:
+            mid = int(low + (high - low) / 2)
+            if not mid:
+                return 1
+            if self.advisor(nums, mid, threshold):
+                high = mid
+            else:
+                low = mid + 1
+        return (high)
